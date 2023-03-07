@@ -1,33 +1,36 @@
 //import : here it has to import a class / function from the provided location / library.
 import React, { Component } from "react";
 
-export default class Landing extends Component {
-  render() {
-    return (
-      <>
-        <section class="landing">
-          <div class="dark-overlay">
-            <div class="landing-inner">
-              <h1 class="x-large">Developer Connector</h1>
-              <p class="lead">
-                Create a developer profile/portfolio, share posts and get help
-                from other developers
-              </p>
-              <div>
-                <a href="Register.html" class="btn btn-primary">
-                  Sign Up
-                </a>
-                <a href="Login.html" class="btn">
-                  log In
-                </a>
-              </div>
-            </div>
+
+const Landing = () => {
+  return (
+    <>
+    <section class="landing">
+      <div class="dark-overlay">
+        <div class="landing-inner">
+          <h1 class="x-large">Developer Connector</h1>
+          <p class="lead">
+            Create a developer profile/portfolio, share posts and get help
+            from other developers
+          </p>
+          <div>
+            <a href="Register.html" class="btn btn-primary">
+              Sign Up
+            </a>
+            <a href="Login.html" class="btn">
+              log In
+            </a>
           </div>
-        </section>
-      </>
-    );
-  }
+        </div>
+      </div>
+    </section>
+  </>
+  )
 }
+
+export default Landing
+
+
 
 // export : to use it as public
 // default : will use the same name

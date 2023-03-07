@@ -12,6 +12,7 @@ export default class Register extends Component {
       email: "",
       password: "",
       confirmPassword: "",
+      errors: [],
     };
   }
 
@@ -35,10 +36,14 @@ export default class Register extends Component {
     e.preventDefault();
     console.log(this.state);
 
-    api.post('/users', this.state);
-    // end point
-    // data
-    // header specification
+    api.post('/users', this.state).then((res) => console.log(res.data)).catch((err) => {
+      this.setState({ ["errors"]: err.response.data.errors});
+    });
+    //then: to handle the success part
+    //catch: to handle the error part
+    // end point: /users
+    // data: this.state
+    // header specification: already added in api.js, optional for us bcz of api.js work 
   };
 
   render() {
@@ -55,18 +60,20 @@ export default class Register extends Component {
           </p>
           <form class="form" onSubmit={this.onSubmit}>
             <div class="form-group">
-              <input type="text" placeholder="Enter the Name" name="name" required value={name} onChange={this.onChange} />
+              <input type="text" placeholder="Enter the Name" name="name"  value={name} onChange={this.onChange} />
             </div>
+            <div className="d-block invalid-feedback"> {this.state.errors.length != 0 && this.state.errors[0].msg} </div>
+           
             <div class="form-group">
               <input type="email" placeholder="enter your email" name="email" value={email} onChange={this.onChange}   />
-              <small>
-                This site uses Gravatar so if you want a profile image, use a
-                Gravatar email
-              </small>
+           
             </div>
+            <div className="d-block invalid-feedback"> {this.state.errors.length != 0 && this.state.errors[1].msg} </div>
+           
             <div class="form-group">
               <input type="password" placeholder="Password" name="password" value={password} onChange={this.onChange} />
             </div>
+            <div className="d-block invalid-feedback"> {this.state.errors.length != 0 && this.state.errors[2].msg} </div>
             <div class="form-group">
               <input
                 type="password"
@@ -75,7 +82,7 @@ export default class Register extends Component {
                 value={confirmPassword} onChange={this.onChange}
               />
             </div>
-          
+           
             <div class="form-group">
               <input type="submit" class="btn btn-primary" value="Register" />
             </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import api from "../../utils/api";
 
 export default class Login extends Component {
 
@@ -32,6 +33,8 @@ export default class Login extends Component {
 
     e.preventDefault();
     console.log(this.state);
+
+    api.post('/auth', this.state).then((res) => console.log(res.data)).catch();
   };
 
 
@@ -78,3 +81,5 @@ export default class Login extends Component {
     );
   }
 }
+
+
